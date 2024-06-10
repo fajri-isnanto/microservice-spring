@@ -5,7 +5,7 @@ const app = express();
 // Define routes
 app.get('/cart', async (req, res) => {
     try {
-        const response = await fetch('http://10.10.10.1:80');
+        const response = await fetch('http://service-cart:80');
         const data = await response.json();
         res.json(data);
     } catch (error) {
@@ -15,7 +15,7 @@ app.get('/cart', async (req, res) => {
 
 app.get('/user', async (req, res) => {
     try {
-        const response = await fetch('http://10.10.10.2:80');
+        const response = await fetch('http://service-user:80');
         const data = await response.json();
         res.json(data);
     } catch (error) {
@@ -25,7 +25,7 @@ app.get('/user', async (req, res) => {
 
 app.get('/checkout', async (req, res) => {
     try {
-        const response = await fetch('http://10.10.10.3:80');
+        const response = await fetch('http://service-checkout:80');
         const data = await response.json();
         res.json(data);
     } catch (error) {
@@ -35,7 +35,7 @@ app.get('/checkout', async (req, res) => {
 
 app.get('/product', async (req, res) => {
     try {
-        const response = await fetch('http://10.10.10.4:80');
+        const response = await fetch('http://service-product:80');
         const data = await response.json();
         res.json(data);
     } catch (error) {
