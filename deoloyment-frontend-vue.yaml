@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-frontend-vue
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      frontend: vue
+  template: 
+    metadata:
+      labels:
+        frontend: vue
+    spec:
+      containers:
+        - name: vue
+          image: kalax1011/frontend-vue
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: service-frontend-vue
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+  selector: 
+    frontend: vue
