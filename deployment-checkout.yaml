@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-checkout
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      backend: checkout
+  template: 
+    metadata:
+      labels:
+        backend: checkout
+    spec:
+      containers:
+        - name: backend-checkout
+          image: kalax1011/backend-checkout
+          ports:
+            - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: service-checkout
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector: 
+    backend: checkout

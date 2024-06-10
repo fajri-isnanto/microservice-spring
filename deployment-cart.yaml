@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-cart
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      backend: cart
+  template: 
+    metadata:
+      labels:
+        backend: cart
+    spec:
+      containers:
+        - name: backend-cart
+          image: kalax1011/backend-cart
+          ports:
+            - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: service-cart
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector: 
+    backend: cart
